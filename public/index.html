@@ -1,48 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<!-- <meta http-equiv="Cache-control" content="public"> -->
-		<meta http-equiv="Cache-Control" content="max-age: 31536000, no-cache, no-store, must-revalidate">
-		<title>Glasperlenspiel</title>
-		<link rel="icon" type="image/svg+xml" href="./assets/svg/favicon.svg" />
-		<script src="./alibs/numbers.js"></script>
-		<script src="./alibs/math.js"></script>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
 		<script src="./alibs/jsyaml.js"></script>
-		
-		<!-- test this! NE IST SUPER BUGGY!!!!! -->
-		<!-- <script src="./alibs/colorify.js"></script> -->
-		<!-- <link rel="stylesheet" href="./alibs/colorify.css" /> -->
-		<script src="./alibs/color-thief.umd.js"></script>
-		<script src="./alibs/jscolor.js"></script>
-		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script> -->
 
-
-		<!-- jquery is needed for chessBoard!!!! -->
-		<script src="./alibs/jquery-3.6.0.min.js"></script>
-		<link rel="stylesheet" href="./alibs/chessBoard/css/chessboard.min.css" />
-		<script src="./alibs/chessBoard/js/chessboard.min.js"></script>
-		<script src="./alibs/chess.js"></script>
-		<!-- bootstrap is needed for perlen, jQuery needed for bootstrap? -->
-		<link rel="stylesheet" href="./alibs/bootstrap.min.css" />
-		<!-- <link
-			rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-			integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-			crossorigin="anonymous"
-		/> -->
-		<!-- <script type="text/javascript" src="https://js.live.net/v7.2/OneDrive.js"></script> -->
-
-		<link rel="stylesheet" href="./assets/fonts/fonts.css" />
-		<link rel="stylesheet" href="./BASE/base.css"> 
-
-		<script src="./BASE/globals.js"></script>
-		<script src="./BASE/base.js"></script>
-		<script src="./BASE/game.js"></script>
-
-    <!-- update the version number as needed -->
+		<!-- update the version number as needed -->
     <script defer src="/__/firebase/8.6.7/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/8.6.7/firebase-auth.js"></script>
@@ -60,200 +25,67 @@
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-
-
-
-	</head>
-
-	<body style="opacity:0">
-		<div id="dHeader" style="background-color: var(--dark-blue); padding-top: 10px">
-			<div id='dButtonsLeft' style="position: absolute; left:0px; padding:10px; display:flex">
-				<div id='dToolbarButton' onclick='onClickToolbarButton()' class='toolbarButtonClass'>🪔</div>
-				<!-- <input data-jscolor="{}" value="#3399FF"> -->
-				<!-- <div id='dSettingsButton' onclick='onClickSettings()' class='toolbarButtonClass'>⚙️</div> -->
-				<!-- <div id='dBoardSelection' onclick='onClickUploadBoard()' class='toolbarButtonClass'>board</div> -->
-				<!-- 
-				<div id='dPreselectButton'  onclick='onClickPreselect(this)' class='toolbarButtonClass'>select</div>
-				<div id='dBoardSwitchButton'  onclick='onClickBoardSwitch(this)' class='toolbarButtonClass'>hex</div> -->
-				<!-- <button onClick="launchOneDrivePicker()">OneDrive</button> -->
-			</div>
-			<div id='dTempleLobby' style="display: none; position: absolute; margin: 10px; padding: 20px" onclick='onClickTempleLobby()'>🏛️</div>
-			<div id='dButtonsRight' style="position: absolute; right:0px; padding:10px; display:flex">
-				<!-- <div id='dResetButton'  onclick='onClickReset()' class='toolbarButtonClass'>♻️</div>				 -->
-				<!-- <div id='dHelpButton'  onclick='show("dHelpWindow");' class='toolbarButtonClass'>🪔</div>  -->
-				<div id='dColorButton' onclick='onClickPaletteButton();' class='toolbarButtonClass'>🎨</div>
-			</div>
-			<div class="flex-column flex-center">
-				<!-- <h2 id="hTitle" style='color:#ffffff40;text-shadow: 0px 2px 25px rgba(255, 255, 255, .5);'>Welcome to the Game</h2> -->
-				<h2 id="hTitle" style='color:#ffffff60;'>Welcome to the Game</h2>
-				<p id="dSubtitle" style='color:#ffffff40;margin-top:-5px' class="light-text">*** Glasperlenspiel ***</p>
-			</div>
-		</div>
-
-		<div id="dMainContent" style="background-color: var(--primary-blue)">
-			<div id="dLogin">
-				<h2 class="text-center">Login</h2>
-				<form id="loginForm" class="flex" style="margin-top: 20px">
-					<input type="text" name="username" id="usernameInput" placeholder="username" class="flex-grow-1" />
-					<button id="loginBtn">Go!</button>
-				</form>
-			</div>
-
-			<div id="dMenu" style="display: none"></div>
-
-			<section id="dLobby" style='display:none;color:black' class="flex-grow-1 flex-column">
-				<div id="messagesList" class="flex-grow-1">
-					<!-- #region example message -->
-					<!-- <div class="message message-left">
-							<div class="message-details flex">
-								<p class="flex-grow-1 message-author">James Quick</p>
-								<p class="message-date">April 7th 11:50pm</p>
-							</div>
-							<p class="message-content">Lorem ipsum dolor amet wolf pabst lo-fi beard meditation etsy austin health goth.</p>
-						</div> -->
-					<!-- #endregion -->
-				</div>
-				<form id="messageForm" class="flex" autocomplete="off">
-					<input type="text" name="message" id="messageInput" class="flex-grow-1" autocomplete="false" />
-					<button id="sendBtn">Send</button>
-				</form>
-			</section>
-		</div>
-
-		<div id="dGameScreen" style="display: none" class="flex-grow-1 flex">
-			<!-- <div id="md" style="height:100%;width:100%;background:green"> -->
-			<div id="sidebar" style='z-index:1001'></div>
-			<div id="rightSide">
-				<div id="table" class="flexWrap"></div>
-			</div>
-		</div>
-		<div id='dAux' style='display:none;z-index:1002'>
-			<button onclick='closeAux()' class='button' style="position:absolute;left:0;top:0;border:none;background:transparent;outline:none;color:white">&#10005;</button>
-			<h1 id='dAuxTitle' style="margin:20px 50px">Hallo</h1>
-			<div id='dAuxContent' style="margin:20px"></div>
-		</div>
-		<div id='dAuxRight' style='display:none;z-index:1002'>
-			<button onclick='closeAuxRight()' class='button' style="position:absolute;left:0;top:0;border:none;background:transparent;outline:none;color:white">&#10005;</button>
-			<h1 id='dAuxRightTitle' style="margin:20px 50px">Hallo</h1>
-			<div id='dAuxRightContent' style="margin:20px"></div>
-		</div>
-		<div id='dButtons'>
-			<div id='dGo' onclick='onClickGo()' style='display:none;'>PLAY!</div>
-			<div id='dComputer' onclick='onClickComputer()' style='display:none;'>🖥️</div>
-			<div id='dCalibrate' onclick='onClickCalibrate()' style='display:none;'>⚖️</div>
-			<div id='dGear' onclick='onClickGear()' style='display:none;'>⚙️</div>
-			<div id='dTemple' onclick='onClickTemple()' style='display:none;'>🏛️</div>
-			<button id='dummy' style='width:0px;padding:0;margin:0;border:none;outline:none;background-color:transparent;color:transparent'>dummy
-		</div>
-		<div id='dHelpWindow' style="display:none;font-size:16px;background:dimgray;width:320px;position:fixed;right:20px;top:20px;padding:10px;border-radius:10px">
-			<h4>Keyboard Shortcuts:</h4>
-			<p>Shift+Click on table header: insert row/col</p>
-			<p>Ctrl+Click on table header: remove row/col</p>
-			<p>Ctrl+Hover over perle: magnify</p>
-			<br />
-			<h4>Perlen Editor:</h4>
-			<p>Doubleclick left sidebar: open editor</p>
-			<p>Top Area: DragDrop image from eg. image search or click to browse</p>
-			<p>Name Input: Enter description (also used as filename)</p>
-			<p>Click Save to add new Glasperle to collection</p>
-			<p>Click clear to clear Area and Input</p>
-			<p> (known BUG! DD does not work without clear first!)</p>
-			<p>Press close (bottom) to close editor</p>
-			<div style='text-align:center'>
-				<button style="margin-top:10px;padding:4px 14px" class="buttonClass" onclick="hide('dHelpWindow');">close</button>
-			</div>
-		</div>
-		<div id='dSettingsWindow' style="display:none;font-size:16px;background:dimgray;width:420px;z-index:1003;position:fixed;left:20px;top:20px;padding:10px;border-radius:10px">
-			<h4>Settings:</h4>
-			<div id='dSettingsContent'></div>
-			<div style='text-align:center'>
-				<button style="margin-top:10px;width:90px;padding:4px 14px" class="buttonClass" onclick="onClickSetSettings()">set</button>
-				<button style="margin-top:10px;width:90px;padding:4px 14px" class="buttonClass" onclick="onClickCloseSettings()">close</button>
-			</div>
-		</div>
-		<!-- <div id='dSheet' style='z-index:1006;left:0;top:90px;position:fixed;width:1000px;height:1000px;'> -->
-		<!-- <canvas id='sheet' style='border:solid 2px blue;z-index:1006;position:fixed;' ></canvas> -->
-		<!-- </div> -->
-		
-
-		<!-- <script src='../alibs/socket.io.js'></script> -->
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js'></script>
-		
-		<script src="./BASE/features/areas.js"></script>
-		<script src="./BASE/features/audio.js"></script>
-		<script src="./BASE/features/badges.js"></script>
-		<script src="./BASE/features/banner.js"></script>
-		<script src="./BASE/features/dbStub.js"></script>
-		<script src="./BASE/features/keys.js"></script>
-		<script src="./BASE/features/markers.js"></script>
-		<script src="./BASE/features/menu.js"></script>
-		<script src="./BASE/features/scoring.js"></script>
-		<script src="./BASE/features/speech.js"></script>
-		<script src="./BASE/features/time.js"></script>
-		<script src="./BASE/features/ui.js"></script>
-
-		<script src="./work/done/boardEditor.js"></script>
-		<script src="./work/done/assets.js"></script>
-		<script src="./work/done/board.js"></script>
-		<script src="./work/done/cardGame.js"></script>
-		<script src="./work/done/lobby.js"></script>
-		<script src="./work/done/settings.js"></script>
-		<script src="./work/done/shapes.js"></script>
-		<script src="./work/done/users.js"></script>
-		<script src="./work/done/userAvatar.js"></script>
-
-		<script src="./work/canvas.js"></script>
-		<script src="./work/fake.js"></script>
-		<script src="./work/item.js"></script>
-		<script src="./work/onClick.js"></script>
-		<script src="./work/si8Class.js"></script>
-		<script src="./work/socket.js"></script>
-		<script src="./work/standard.js"></script>
-		<script src="./work/testing.js"></script>
-		<script src="./work/toolbar.js"></script>
-
-		<!-- <script src="./start.js"></script> -->
-		<script src="./clientTest.js"></script>
-		<script src="./client.js"></script>
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message">
+      <h2>Welcome</h2>
+      <h1>Firebase Hosting Setup Complete</h1>
+      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
+      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    </div>
+    <p id="load">Firebase SDK Loading&hellip;</p>
 
     <script>
-      // document.addEventListener('DOMContentLoaded', function() {
-      //   const loadEl = document.querySelector('#load');
-      //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-      //   // // The Firebase SDK is initialized and available here!
-      //   //
-      //   // firebase.auth().onAuthStateChanged(user => { });
-      //   // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-      //   // firebase.firestore().doc('/foo/bar').get().then(() => { });
-      //   // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-      //   // firebase.messaging().requestPermission().then(() => { });
-      //   // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-      //   // firebase.analytics(); // call to activate
-      //   // firebase.analytics().logEvent('tutorial_completed');
-      //   // firebase.performance(); // call to activate
-      //   //
-      //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-      //   try {
-      //     let app = firebase.app();
-      //     let features = [
-      //       'auth', 
-      //       'database', 
-      //       'firestore',
-      //       'functions',
-      //       'messaging', 
-      //       'storage', 
-      //       'analytics', 
-      //       'remoteConfig',
-      //       'performance',
-      //     ].filter(feature => typeof app[feature] === 'function');
-      //     loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-      //   } catch (e) {
-      //     console.error(e);
-      //     loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-      //   }
-      // });
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
     </script>
-
-	</body>
+  </body>
 </html>
